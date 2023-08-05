@@ -1,13 +1,20 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/navbar.css";
 
-export default function Navbar() {
+const Navbar: React.FC = () => {
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
   return (
     <nav className="navigation">
       <a href="/" className="brand-name">
         FakeLandia Justice Deparment
       </a>
-      <button className="hamburger">
+      <button
+        className="hamburger"
+        onClick={() => {
+          setIsNavExpanded(!isNavExpanded);
+        }}
+      >
         {/* icon from heroicons.com */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +29,11 @@ export default function Navbar() {
           />
         </svg>
       </button>
-      <div className="navigation-menu">
+      <div
+        className={
+          isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
+        }
+      >
         <ul>
           <li>
             <a href="/home">Home</a>
@@ -37,7 +48,7 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
+};
 
 // My original Code
 // const Nav = () => (
@@ -62,4 +73,4 @@ export default function Navbar() {
 //   </nav>
 // );
 
-// export default Nav;
+export default Navbar;

@@ -8,13 +8,7 @@ function App() {
       <BrowserRouter>
         <FakeLandiaRouter />
       </BrowserRouter>
-      <div className="App">
-        <h1>What is Lorem Ipsum? </h1>
-        <h2>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry...
-        </h2>
-      </div>
+      <div className="App"></div>
     </>
   );
 }
