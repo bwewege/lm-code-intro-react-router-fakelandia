@@ -80,12 +80,10 @@
   }
 }
 
-/* @media screen and (max-width: 768px) {
-  .navigation-menu ul {
-   
-  }
-} */
-
+.navigation-menu li a.active {
+  background: #2642af;
+  color: white;
+}
 @media screen and (max-width: 768px) {
   .navigation-menu ul {
     /* navigation menu is positioned to start 60px from the top of the document (which is directly below the navbar) */

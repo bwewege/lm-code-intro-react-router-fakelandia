@@ -36,41 +36,18 @@ const Navbar: React.FC = () => {
       >
         <ul>
           <li>
-            <a href="/home">Home</a>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <a href="/misdemeanors">Misdemeanors</a>
+            <NavLink to="/misdemeanors">Misdemeanors</NavLink>
           </li>
           <li>
-            <a href="/confess">Confess To Us</a>
+            <NavLink to="/confess">Confess To Us</NavLink>
           </li>
         </ul>
       </div>
     </nav>
   );
 };
-
-// My original Code
-// const Nav = () => (
-//   <nav
-//     className="is-flex is-flex-grow-1 is-align-items-center"
-//     style={{ width: "100%" }}
-//   >
-//     <ul
-//       style={{ width: "100%" }}
-//       className="is-flex is-flex-direction-row is-justify-content-space-evenly is-justify-content-space-evenly"
-//     >
-//       <li>
-//         <NavLink to="/">Home</NavLink>
-//       </li>
-//       <li>
-//         <NavLink to="/misdemeanors">Misdemeanors</NavLink>
-//       </li>
-//       <li>
-//         <NavLink to="/confess">Confess To Us</NavLink>
-//       </li>
-//     </ul>
-//   </nav>
-// );
 
 export default Navbar;
