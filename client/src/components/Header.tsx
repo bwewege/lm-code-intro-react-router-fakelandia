@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import Nav from "./Navbar";
 
 const Header = () => (
   <header className="header has-background-primary is-flex is-align-items-center is-justify-content-center">
