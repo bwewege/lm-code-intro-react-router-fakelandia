@@ -1,3 +1,5 @@
+import { MisdemeanourKind } from "./misdemeanours.types";
+
 export type ConfessFormData = {
   subject: string;
   reason: string;
@@ -15,4 +17,4 @@ export type Reason =
   | "lift"
   | "vegetables"
   | "united"
-  | "talk";
+  | "just-talk";

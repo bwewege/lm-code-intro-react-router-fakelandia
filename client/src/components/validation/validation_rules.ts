@@ -17,8 +17,8 @@ export const mustNotBeNull = () => {
       : undefined;
   };
 };
-export const mustNotEqual = (desiredValue: string) => {
+export const mustNotEqual = (undesiredValue: string) => {
   return (value: string) => {
-    return value === desiredValue ? `Please select a valid Reason` : undefined;
+    return value === undesiredValue ? `Please select a Reason` : undefined;
   };
 };

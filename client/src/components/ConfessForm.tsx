@@ -70,7 +70,7 @@ const ConfessForm = () => {
           onChangeHandler={onChangeHandler}
           options={[
             { value: "NOT_SELECTED", display: "-" },
-            { value: "talk", display: "📢 I just want to talk" },
+            { value: "just-talk", display: "📢 I just want to talk" },
             { value: "rudeness", display: "🤪 Mild Public Rudeness" },
             { value: "lift", display: "🗣 Speaking in a Lift" },
             { value: "vegetables", display: "🥗 Not Eating Your Vegetables" },
