@@ -5,13 +5,6 @@ import ConfessForm from "./ConfessForm";
 import MainLayout from "./MainLayout";
 import NotFound from "./NotFound";
 import { MisdemeanourProvider } from "../context/MisdemeanourContext";
-import { ConfessFormData } from "../types/confess.types";
-
-const yourConfessFormData: ConfessFormData = {
-  subject: "",
-  reason: "",
-  details: "",
-};
 
 const FakeLandiaRouter: React.FC = () => (
   <MisdemeanourProvider>
@@ -27,11 +20,7 @@ const FakeLandiaRouter: React.FC = () => (
             </MisdemeanourProvider>
           }
         />
-
-        <Route
-          path="confess"
-          element={<ConfessForm form={yourConfessFormData} />}
-        />
+        <Route path="confess" element={<ConfessForm />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

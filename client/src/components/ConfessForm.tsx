@@ -19,6 +19,10 @@ const defaultFormData: ConfessFormData = {
 
 const ConfessForm = () => {
   const [formData, setFormData] = useState<ConfessFormData>(defaultFormData);
+  const [submitted, setSubmitted] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<{
+    [key: string]: string[];
+  }>({});
 
   const onChangeHandler: ConfessFormChangeHandler = <
     TKey extends keyof ConfessFormData
@@ -31,9 +35,16 @@ const ConfessForm = () => {
     const newData: ConfessFormData = { ...formData };
     newData[name] = value;
     setFormData(newData);
-  };
 
-  const [submitted, setSubmitted] = useState(false);
+    const newValidationErrors = { ...validationErrors };
+    newValidationErrors[name] =
+      name === "subject"
+        ? validateSubject(value)
+        : name === "reason"
+        ? validateReason(value)
+        : validateDetails(value);
+    setValidationErrors(newValidationErrors);
+  };
 
   return (
     <>
@@ -70,7 +81,7 @@ const ConfessForm = () => {
           onChangeHandler={onChangeHandler}
         />
         <hr />
-        <button type="submit">Submit</button>
+        <button type="submit">Confess</button>
         <hr />
       </form>
       {submitted && <DisplayConfessForm form={formData} />}
