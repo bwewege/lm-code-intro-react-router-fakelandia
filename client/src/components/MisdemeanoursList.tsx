@@ -8,15 +8,33 @@ const MisdemeanoursList: React.FC<MisdemeanoursListProps> = ({
   misdemeanours,
 }) => {
   return (
-    <ul>
-      {misdemeanours.map((misdemeanour, index) => (
-        <li key={index}>
-          <p>Citizen ID: {misdemeanour.citizenId}</p>
-          <p>Misdemeanour: {misdemeanour.misdemeanour}</p>
-          <p>Date: {misdemeanour.date}</p>
-        </li>
-      ))}
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Citizen ID</th>
+          <th>Misdemeanour</th>
+          <th>Date</th>
+          <th>Punishment</th>
+        </tr>
+      </thead>
+      <tbody>
+        {misdemeanours.map((misdemeanour, index) => (
+          <tr key={index}>
+            <td>{misdemeanour.citizenId}</td>
+            <td>{misdemeanour.misdemeanour}</td>
+            <td>{misdemeanour.date}</td>
+            <td>
+              <img
+                src={`https://picsum.photos/100/100?random=${index}`}
+                alt={`Punishement Image for Citizen ${misdemeanour.citizenId}`}
+                width={100}
+                height={100}
+              />
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

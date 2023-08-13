@@ -1,9 +1,9 @@
 .navigation {
   height: 60px;
-  width: 100%; /* set navbar width to 100% so it spans full width of screen */
-  display: flex; /* Make it a flex container */
-  align-items: center; /* centre flex items vertically*/
-  position: relative; /* any child element's position will be relative to this */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
   padding: 0.5rem 0rem;
   background-color: #fff;
   color: black;
