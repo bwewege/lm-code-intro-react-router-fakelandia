@@ -24,11 +24,7 @@ export const validateSubject: (value: string) => string[] = (value) => {
 };
 
 export const validateReason: (value: string) => string[] = (value) => {
-  const rules = [
-    minLength(REASON_MIN_LENGTH),
-    maxLength(REASON_MAX_LENGTH),
-    mustNotBeNull(),
-  ];
+  const rules = [mustNotBeNull()];
 
   return apply(rules, value);
 };
