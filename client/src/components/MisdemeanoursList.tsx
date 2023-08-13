@@ -7,6 +7,21 @@ type MisdemeanoursListProps = {
 const MisdemeanoursList: React.FC<MisdemeanoursListProps> = ({
   misdemeanours,
 }) => {
+  const getLongName = (misdemeanourType: string) => {
+    switch (misdemeanourType) {
+      case "rudeness":
+        return "🤪 Mild Public Rudeness";
+      case "lift":
+        return "🗣 Speaking in a Lift";
+      case "vegetables":
+        return "🥗 Not Eating Your Vegetables";
+      case "united":
+        return "😈 Supporting Manchester United";
+      default:
+        return misdemeanourType;
+    }
+  };
+
   return (
     <table>
       <thead>
@@ -21,7 +36,7 @@ const MisdemeanoursList: React.FC<MisdemeanoursListProps> = ({
         {misdemeanours.map((misdemeanour, index) => (
           <tr key={index}>
             <td>{misdemeanour.citizenId}</td>
-            <td>{misdemeanour.misdemeanour}</td>
+            <td>{getLongName(misdemeanour.misdemeanour)}</td>
             <td>{misdemeanour.date}</td>
             <td>
               <img
