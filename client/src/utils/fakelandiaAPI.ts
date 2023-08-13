@@ -2,13 +2,17 @@ import { Misdemeanour } from "../types/misdemeanours.types";
 
 const url: string = "http://localhost:8080/api/misdemeanours/5";
 
-export const fetchMisdemeanours = async (): Promise<Misdemeanour[]> => {
+type MisdemeanourResponse = {
+  misdemeanours: Misdemeanour[];
+};
+
+export async function fetchMisdemeanours(): Promise<Misdemeanour[]> {
   try {
     const response = await fetch(url);
-    const data = await response.json();
-    return data;
+    const data: MisdemeanourResponse = await response.json();
+    return data.misdemeanours;
   } catch (error) {
-    console.error("Error fetching misdemeanour data:", error);
+    console.error("Error fetching data:", error);
     return [];
   }
-};
+}
