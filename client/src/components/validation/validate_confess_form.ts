@@ -1,8 +1,6 @@
 import {
   SUBJECT_MAX_LENGTH,
   SUBJECT_MIN_LENGTH,
-  REASON_MAX_LENGTH,
-  REASON_MIN_LENGTH,
   DETAILS_MAX_LENGTH,
   DETAILS_MIN_LENGTH,
 } from "./validation_constants";
@@ -24,7 +22,7 @@ export const validateSubject: (value: string) => string[] = (value) => {
 };
 
 export const validateReason: (value: string) => string[] = (value) => {
-  const rules = [mustNotBeNull()];
+  const rules = [mustNotBeNull(), mustNotEqual("-")];
 
   return apply(rules, value);
 };
@@ -41,4 +39,10 @@ export const validateDetails: (value: string) => string[] = (value) => {
 
 const apply = (rules: ValidationFunction[], value: string) => {
   return rules.map((r) => r(value)).filter(Boolean) as string[];
+};
+
+export const mustNotEqual = (desiredValue: string) => {
+  return (value: string) => {
+    return value === desiredValue ? undefined : `Please select valid Reason `;
+  };
 };

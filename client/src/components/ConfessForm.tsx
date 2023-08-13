@@ -10,6 +10,7 @@ import {
   validateReason,
   validateDetails,
 } from "./validation/validate_confess_form";
+import { SelectInput } from "./inputs/SelectInput";
 
 const defaultFormData: ConfessFormData = {
   subject: "",
@@ -60,15 +61,21 @@ const ConfessForm = () => {
           onChangeHandler={onChangeHandler}
         />
         <hr />
-        <TextInput
+        <SelectInput
           id="reason"
-          type="text"
           name="reason"
-          value={formData.reason}
-          placeholder="Select a reason"
+          value={formData.reason ?? ""}
           label="Reason for contact:"
           validate={validateReason}
           onChangeHandler={onChangeHandler}
+          options={[
+            { value: "NOT_SELECTED", display: "-" },
+            { value: "talk", display: "📢 I just want to talk" },
+            { value: "rudeness", display: "🤪 Mild Public Rudeness" },
+            { value: "lift", display: "🗣 Speaking in a Lift" },
+            { value: "vegetables", display: "🥗 Not Eating Your Vegetables" },
+            { value: "united", display: "😈 Supporting Manchester United" },
+          ]}
         />
         <TextInput
           id="details"

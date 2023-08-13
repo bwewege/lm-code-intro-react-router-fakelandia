@@ -10,8 +10,9 @@ export type ConfessFormChangeHandler = <TKey extends keyof ConfessFormData>(
 ) => void;
 
 export type Reason =
-  | "🤪 Mild Public Rudeness"
-  | "🗣 Speaking in a Lift"
-  | "🥗 Not Eating Your Vegetables"
-  | "😈 Supporting Manchester United"
-  | "📢 I just want to talk";
+  | "NOT_SELECTED"
+  | "rudeness"
+  | "lift"
+  | "vegetables"
+  | "united"
+  | "talk";
