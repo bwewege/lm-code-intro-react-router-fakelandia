@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Misdemeanours from "./Misdemeanours";
-import ConfessForm from "./DisplayConfessForm";
+import ConfessForm from "./ConfessForm";
 import MainLayout from "./MainLayout";
 import NotFound from "./NotFound";
 import { MisdemeanourProvider } from "../context/MisdemeanourContext";
