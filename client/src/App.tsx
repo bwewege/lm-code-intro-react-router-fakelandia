@@ -1,6 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import FakeLandiaRouter from "./components/Router";
 import "./styles.css";
+import { MisdemeanourProvider } from "./context/MisdemeanourContext";
 
 function App() {
   return (

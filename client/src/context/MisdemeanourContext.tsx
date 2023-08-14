@@ -2,13 +2,21 @@ import { useState, useEffect, createContext } from "react";
 import { fetchMisdemeanours } from "../hooks/fetchMisdemeanours";
 import { Misdemeanour } from "../types/misdemeanours.types";
 
-export const MisdemeanourContext = createContext<Misdemeanour[]>([]);
+export type MisdemeanourContextType = {
+  misdemeanours: Misdemeanour[];
+  addMisdemeanour: (misdemeanour: Misdemeanour) => void;
+};
+
+export const MisdemeanourContext = createContext<MisdemeanourContextType>({
+  misdemeanours: [],
+  addMisdemeanour: () => {},
+});
 
 interface Props {
   children: React.ReactNode;
 }
 
-// FYI - In React 18 the FunctionComponent intergace has changed, PropsWithChildren has been removed
+// FYI - In React 18 the FunctionComponent interface has changed, PropsWithChildren has been removed
 // this means the children prop needs to be included manually.
 
 export const MisdemeanourProvider: React.FC<Props> = ({ children }) => {
@@ -21,8 +29,14 @@ export const MisdemeanourProvider: React.FC<Props> = ({ children }) => {
     });
   }, []);
 
+  const addMisdemeanour = (misdemeanour: Misdemeanour) => {
+    setMisdemeanourData([...misdemeanourData, misdemeanour]);
+  };
+
   return (
-    <MisdemeanourContext.Provider value={misdemeanourData}>
+    <MisdemeanourContext.Provider
+      value={{ misdemeanours: misdemeanourData, addMisdemeanour }}
+    >
       {children}
     </MisdemeanourContext.Provider>
   );

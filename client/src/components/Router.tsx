@@ -12,14 +12,7 @@ const FakeLandiaRouter: React.FC = () => (
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
 
-        <Route
-          path="misdemeanours"
-          element={
-            <MisdemeanourProvider>
-              <Misdemeanours />
-            </MisdemeanourProvider>
-          }
-        />
+        <Route path="misdemeanours" element={<Misdemeanours />} />
         <Route path="confess" element={<ConfessForm />} />
       </Route>
       <Route path="*" element={<NotFound />} />

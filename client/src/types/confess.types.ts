@@ -1,4 +1,4 @@
-import { MisdemeanourKind } from "./misdemeanours.types";
+import { JustTalk, MisdemeanourKind } from "./misdemeanours.types";
 
 export type ConfessFormData = {
   subject: string;
@@ -11,10 +11,4 @@ export type ConfessFormChangeHandler = <TKey extends keyof ConfessFormData>(
   name: TKey
 ) => void;
 
-export type Reason =
-  | "NOT_SELECTED"
-  | "rudeness"
-  | "lift"
-  | "vegetables"
-  | "united"
-  | "just-talk";
+export type Reason = "NOT_SELECTED" | JustTalk | MisdemeanourKind;

@@ -3,7 +3,7 @@ import { MisdemeanourContext } from "../context/MisdemeanourContext";
 import MisdemeanoursList from "./MisdemeanoursList";
 
 const Misdemeanours: React.FC = () => {
-  const allMisdemeanours = useContext(MisdemeanourContext);
+  const { misdemeanours: allMisdemeanours } = useContext(MisdemeanourContext);
   const [filter, setFilter] = useState("");
 
   const misdemeanoursToDisplay = filter
