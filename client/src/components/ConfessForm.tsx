@@ -15,6 +15,7 @@ import { SelectInput } from "./inputs/SelectInput";
 import { Misdemeanour, MisdemeanourKind } from "../types/misdemeanours.types";
 import { useNavigate } from "react-router-dom";
 import { useConfess } from "../hooks/useConfess";
+import "../styles/confess.css";
 
 const defaultFormData: ConfessFormData = {
   subject: "",
@@ -92,59 +93,77 @@ const ConfessForm = () => {
 
   return (
     <>
-      <p>
-        It's very difficult to catch people committing misdemeanours so we
-        appreciate it when citizens confess to us directly.
-      </p>
-      <p>
-        However, if you're just having a hard day and need to vent then you're
-        welcome to contact us here too. Up to you!
-      </p>
-      <form onSubmit={handleSubmit}>
-        <TextInput
-          id="subject"
-          type="text"
-          name="subject"
-          value={formData.subject}
-          placeholder="Enter a subject"
-          label="Subject:"
-          validate={validateSubject}
-          onChangeHandler={onChangeHandler}
-        />
-        <hr />
-        <SelectInput
-          id="reason"
-          name="reason"
-          value={formData.reason ?? ""}
-          label="Reason for contact:"
-          validate={validateReason}
-          onChangeHandler={onChangeHandler}
-          options={[
-            { value: "NOT_SELECTED", display: "-" },
-            { value: "just-talk", display: "📢 I just want to talk" },
-            { value: "rudeness", display: "🤪 Mild Public Rudeness" },
-            { value: "lift", display: "🗣 Speaking in a Lift" },
-            { value: "vegetables", display: "🥗 Not Eating Your Vegetables" },
-            { value: "united", display: "😈 Supporting Manchester United" },
-          ]}
-        />
-        <TextInput
-          id="details"
-          type="textarea"
-          name="details"
-          value={formData.details}
-          placeholder="Enter the details"
-          label="Details"
-          validate={validateDetails}
-          onChangeHandler={onChangeHandler}
-        />
-        <button type="submit" disabled={loading || !isFormValid()}>
-          Confess
-        </button>
-      </form>
-      {loading && <div>Loading...</div>}
-      {error && <div>Error: {error}</div>}
-      {submitted && <DisplayConfessForm form={formData} />}
+      <section className="confess">
+        <div className="confess__description">
+          <p>
+            It's very difficult to catch people committing misdemeanours so we
+            appreciate it when citizens confess to us directly.
+          </p>
+          <p>
+            However, if you're just having a hard day and need to vent then
+            you're welcome to contact us here too. Up to you!
+          </p>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="confess__form"
+          aria-label="Confession form"
+        >
+          <fieldset className="confess__fieldset">
+            <TextInput
+              id="subject"
+              type="text"
+              name="subject"
+              value={formData.subject}
+              placeholder="Enter a subject"
+              label="Subject"
+              validate={validateSubject}
+              onChangeHandler={onChangeHandler}
+            />
+            <hr />
+            <SelectInput
+              id="reason"
+              name="reason"
+              value={formData.reason ?? ""}
+              label="Reason for contact"
+              validate={validateReason}
+              onChangeHandler={onChangeHandler}
+              options={[
+                { value: "NOT_SELECTED", display: "-" },
+                { value: "just-talk", display: "📢 I just want to talk" },
+                { value: "rudeness", display: "🤪 Mild Public Rudeness" },
+                { value: "lift", display: "🗣 Speaking in a Lift" },
+                {
+                  value: "vegetables",
+                  display: "🥗 Not Eating Your Vegetables",
+                },
+                { value: "united", display: "😈 Supporting Manchester United" },
+              ]}
+            />
+            <TextInput
+              id="details"
+              type="textarea"
+              name="details"
+              value={formData.details}
+              placeholder="Enter the details"
+              label="Details"
+              validate={validateDetails}
+              onChangeHandler={onChangeHandler}
+            />
+          </fieldset>
+          <button
+            type="submit"
+            className="confess__button"
+            disabled={loading || !isFormValid()}
+          >
+            Confess
+          </button>
+        </form>
+        {loading && <div className="confess__loading">Loading...</div>}
+        {error && <div className="confess__error">Error: {error}</div>}
+        {submitted && <DisplayConfessForm form={formData} />}
+      </section>
     </>
   );
 };

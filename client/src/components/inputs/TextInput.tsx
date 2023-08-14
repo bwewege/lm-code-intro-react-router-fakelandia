@@ -35,8 +35,10 @@ export const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <>
-      <div>
-        <label htmlFor={name}>{label}: </label>
+      <div className="form__field">
+        <label htmlFor={name} className="form__label">
+          {label}:
+        </label>
         {type === "textarea" && (
           <textarea
             id={id}

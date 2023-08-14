@@ -33,8 +33,10 @@ export const SelectInput: React.FC<SelectProps> = ({
 
   return (
     <>
-      <div>
-        <label htmlFor={name}>{label}: </label>
+      <div className="form__field">
+        <label htmlFor={name} className="form__label">
+          {label}:
+        </label>
         <select
           id={id}
           value={value}
