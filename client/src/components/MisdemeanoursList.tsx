@@ -1,4 +1,5 @@
 import { Misdemeanour } from "../types/misdemeanours.types";
+import "../styles/misdemeanoursList.css";
 
 type MisdemeanoursListProps = {
   misdemeanours: Misdemeanour[];
@@ -31,44 +32,45 @@ const MisdemeanoursList: React.FC<MisdemeanoursListProps> = ({
   };
 
   return (
-    <table>
-      <thead>
+    <table className="table">
+      <thead className="table__header">
         <tr>
-          <th>Citizen ID</th>
-          <th>
+          <th className="table__header-cell">Citizen ID</th>
+          <th className="table__header-cell">Date</th>
+          <th className="table__header-cell">
             Misdemeanour{" "}
-            <div>
-              {" "}
-              <select
-                onChange={(e) => setFilter(e.target.value)}
-                value={filter}
-              >
-                <option value="">All</option>
-                {uniqueMisdemeanours.map((misdemeanour, index) => (
-                  <option key={index} value={misdemeanour}>
-                    {misdemeanour}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <select onChange={(e) => setFilter(e.target.value)} value={filter}>
+              <option value="">All</option>
+              {uniqueMisdemeanours.map((misdemeanour, index) => (
+                <option key={index} value={misdemeanour}>
+                  {getLongName(misdemeanour)} {/* Using the long name here */}
+                </option>
+              ))}
+            </select>
           </th>
-          <th>Date</th>
-          <th>Punishment</th>
+          <th className="table__header-cell">Punishment</th>
         </tr>
       </thead>
       <tbody>
         {misdemeanours.map((misdemeanour, index) => (
-          <tr key={index}>
-            <td>{misdemeanour.citizenId || "XXXX"}</td>
-            <td>{misdemeanour.date}</td>
-            <td>{getLongName(misdemeanour.misdemeanour)}</td>
+          <tr
+            key={index}
+            className={
+              index % 2 === 0 ? "table__row table__row--even" : "table__row"
+            }
+          >
+            <td className="table__cell">{misdemeanour.citizenId || "XXXX"}</td>
+            <td className="table__cell">{misdemeanour.date}</td>
+            <td className="table__cell">
+              {getLongName(misdemeanour.misdemeanour)}
+            </td>
 
-            <td>
+            <td className="table__cell">
               <img
                 src={`https://picsum.photos/100/100?random=${index}`}
                 alt={`Punishement Image for Citizen ${misdemeanour.citizenId}`}
-                width={100}
-                height={100}
+                width={50}
+                height={50}
               />
             </td>
           </tr>
