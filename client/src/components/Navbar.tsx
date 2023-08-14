@@ -4,6 +4,10 @@ import "../styles/navbar.css";
 
 const Navbar: React.FC = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const closeMenu = () => {
+    setIsNavExpanded(false);
+  };
+
   return (
     <nav className="navigation">
       <a href="/" className="brand-name">
@@ -36,13 +40,19 @@ const Navbar: React.FC = () => {
       >
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/" onClick={closeMenu}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/misdemeanours">Misdemeanours</NavLink>
+            <NavLink to="/misdemeanours" onClick={closeMenu}>
+              Misdemeanours
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/confess">Confess To Us</NavLink>
+            <NavLink to="/confess" onClick={closeMenu}>
+              Confess To Us
+            </NavLink>
           </li>
         </ul>
       </div>
