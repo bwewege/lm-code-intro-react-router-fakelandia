@@ -35,9 +35,10 @@ const MisdemeanoursList: React.FC<MisdemeanoursListProps> = ({
       <tbody>
         {misdemeanours.map((misdemeanour, index) => (
           <tr key={index}>
-            <td>{misdemeanour.citizenId}</td>
-            <td>{getLongName(misdemeanour.misdemeanour)}</td>
+            <td>{misdemeanour.citizenId || "XXXX"}</td>
             <td>{misdemeanour.date}</td>
+            <td>{getLongName(misdemeanour.misdemeanour)}</td>
+
             <td>
               <img
                 src={`https://picsum.photos/100/100?random=${index}`}
