@@ -1,19 +1,21 @@
 .navigation {
-  height: 60px;
-  width: 100%;
+  height: 4rem;
+  width: 80%;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
-  padding: 0.5rem 0rem;
-  background-color: #fff;
+  padding: 0.5rem 0;
+  background-color: #64fbfb;
   color: black;
   box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+  margin: 0 auto;
 }
 
 .brand-name {
   text-decoration: none;
-  color: black;
-  font-size: 1.3rem;
+  color: #351e5e;
+  font-size: 1.8rem;
   margin-left: 1rem;
 }
 
@@ -37,72 +39,64 @@
   width: 100%;
 }
 
-.brand-name {
-  text-decoration: none;
-  color: black;
-  font-size: 1.3rem;
-  margin-left: 1rem;
-}
-
-.navigation-menu {
-  margin-left: auto;
-}
-
 .hamburger {
   border: 0;
-  height: 40px;
-  width: 40px;
+  height: 3rem;
+  width: 3rem;
   padding: 0.5rem;
   border-radius: 50%;
-  background-color: #283b8b;
+  background-color: #57395b;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   position: absolute;
   top: 50%;
-  right: 25px;
+  right: 1rem;
   transform: translateY(-50%);
   display: none;
 }
 
 .hamburger:hover {
-  background-color: #2642af;
+  background-color: #351e5e;
+}
+
+.navigation-menu li a.active {
+  background: #039595ab;
+  color: #57395b;
 }
 
 @media screen and (max-width: 768px) {
   .hamburger {
     display: block;
   }
-}
 
-.navigation-menu li a.active {
-  background: #2642af;
-  color: white;
-}
-@media screen and (max-width: 768px) {
   .navigation-menu ul {
     position: absolute;
-    top: 60px;
+    top: 5rem;
     left: 0;
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - 60px);
+    height: 14rem;
     background-color: white;
     border-top: 1px solid black;
     display: none;
   }
+
   .navigation-menu.expanded ul {
     display: block;
   }
+
   .navigation-menu li {
     text-align: center;
     margin: 0;
   }
+
   .navigation-menu li a {
-    color: black;
+    color: #57395b;
     width: 100%;
     padding: 1.5rem 0;
   }
+
   .navigation-menu li:hover {
-    background-color: #eee;
+    background-color: #0395954f;
   }
 }

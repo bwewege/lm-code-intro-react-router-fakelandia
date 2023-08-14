@@ -54,7 +54,6 @@ const Navbar: React.FC = () => {
               Confess To Us
             </NavLink>
           </li>
-          
         </ul>
       </div>
     </nav>

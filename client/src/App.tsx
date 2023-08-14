@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import FakeLandiaRouter from "./components/Router";
-import "./index.css";
+import "./styles/index.css";
 
 function App() {
   return (
