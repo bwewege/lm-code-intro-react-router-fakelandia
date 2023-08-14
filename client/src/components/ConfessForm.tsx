@@ -99,6 +99,21 @@ const ConfessForm = () => {
     }
   };
 
+  const isFormValid = () => {
+    const errors = [
+      ...validateSubject(formData.subject),
+      ...validateReason(formData.reason),
+      ...validateDetails(formData.details),
+    ];
+
+    return (
+      errors.length === 0 &&
+      formData.subject &&
+      formData.reason &&
+      formData.details
+    );
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -139,7 +154,7 @@ const ConfessForm = () => {
           validate={validateDetails}
           onChangeHandler={onChangeHandler}
         />
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading || !isFormValid()}>
           Confess
         </button>
       </form>
