@@ -2,11 +2,19 @@ import { Misdemeanour } from "../types/misdemeanours.types";
 
 type MisdemeanoursListProps = {
   misdemeanours: Misdemeanour[];
+  filter: string;
+  setFilter: (filter: string) => void;
 };
 
 const MisdemeanoursList: React.FC<MisdemeanoursListProps> = ({
   misdemeanours,
+  filter,
+  setFilter,
 }) => {
+  const uniqueMisdemeanours = [
+    ...new Set(misdemeanours.map((m) => m.misdemeanour)),
+  ];
+
   const getLongName = (misdemeanourType: string) => {
     switch (misdemeanourType) {
       case "rudeness":
@@ -27,7 +35,23 @@ const MisdemeanoursList: React.FC<MisdemeanoursListProps> = ({
       <thead>
         <tr>
           <th>Citizen ID</th>
-          <th>Misdemeanour</th>
+          <th>
+            Misdemeanour{" "}
+            <div>
+              {" "}
+              <select
+                onChange={(e) => setFilter(e.target.value)}
+                value={filter}
+              >
+                <option value="">All</option>
+                {uniqueMisdemeanours.map((misdemeanour, index) => (
+                  <option key={index} value={misdemeanour}>
+                    {misdemeanour}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </th>
           <th>Date</th>
           <th>Punishment</th>
         </tr>
