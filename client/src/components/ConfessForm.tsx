@@ -3,17 +3,18 @@ import {
   ConfessFormData,
   ConfessFormChangeHandler,
 } from "../types/confess.types";
-import DisplayConfessForm from "./DisplayConfessForm";
-import { TextInput } from "./inputs/TextInput";
 import {
   validateSubject,
   validateReason,
   validateDetails,
 } from "./validation/validate_confess_form";
+import DisplayConfessForm from "./DisplayConfessForm";
+import { TextInput } from "./inputs/TextInput";
 import { MisdemeanourContext } from "../context/MisdemeanourContext";
 import { SelectInput } from "./inputs/SelectInput";
 import { Misdemeanour, MisdemeanourKind } from "../types/misdemeanours.types";
 import { useNavigate } from "react-router-dom";
+import { useConfess } from "../hooks/useConfess";
 
 const defaultFormData: ConfessFormData = {
   subject: "",
@@ -28,8 +29,6 @@ const ConfessForm = () => {
   const [validationErrors, setValidationErrors] = useState<{
     [key: string]: string[];
   }>({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const onChangeHandler: ConfessFormChangeHandler = <
     TKey extends keyof ConfessFormData
@@ -55,47 +54,24 @@ const ConfessForm = () => {
 
   const { addMisdemeanour } = useContext(MisdemeanourContext);
 
+  const { confess, loading, error } = useConfess();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
 
-    const url: string = "http://localhost:8080/api/confess";
+    const data = await confess(formData);
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          subject: formData.subject,
-          reason: formData.reason || "just-talk",
-          details: formData.details,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const data = await response.json();
-      if (data.success && !data.justTalked) {
-        const newMisdemeanour: Misdemeanour = {
-          citizenId: data.citizenId,
-          misdemeanour: formData.reason as MisdemeanourKind,
-          date: new Date().toLocaleDateString(),
-        };
+    if (data && data.success && !data.justTalked) {
+      const newMisdemeanour: Misdemeanour = {
+        citizenId: data.citizenId,
+        misdemeanour: formData.reason as MisdemeanourKind,
+        date: new Date().toLocaleDateString(),
+      };
 
-        addMisdemeanour(newMisdemeanour);
-        navigate("/misdemeanours");
-      } else {
-        alert(data.message);
-      }
-      setLoading(false);
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("An unexpected error occurred.");
-      }
+      addMisdemeanour(newMisdemeanour);
+      navigate("/misdemeanours");
+    } else {
+      alert(data.message);
     }
   };
 
